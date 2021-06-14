@@ -51,6 +51,7 @@ func (s service) GetUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	//http status OK! 200
 	w.Header().Add("content-type", "application/json")
 	_ = json.NewEncoder(w).Encode(&GetUserResp{
 		Username: entity.Username,

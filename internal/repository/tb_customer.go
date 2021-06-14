@@ -11,15 +11,14 @@ type UserEntity struct {
 
 type CustomerRepo interface {
 	Save(entity UserEntity) error
-	FindByUsername(username string) (UserEntity, error)
+	FindByUsername(username string) (*UserEntity, error)
 }
 
 type customerRepo struct {
 }
 
 func NewCustomer() CustomerRepo {
-	return &customerRepo{
-	}
+	return &customerRepo{}
 }
 
 func (repo customerRepo) Save(entity UserEntity) error {
@@ -27,9 +26,9 @@ func (repo customerRepo) Save(entity UserEntity) error {
 	return nil
 }
 
-func (repo customerRepo) FindByUsername(username string) (UserEntity, error) {
+func (repo customerRepo) FindByUsername(username string) (*UserEntity, error) {
 	fmt.Printf("start get user by username: %v\n", username)
-	return UserEntity{
+	return &UserEntity{
 		ID:       int64(1),
 		Username: username,
 		Password: "1235",
